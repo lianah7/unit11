@@ -29,6 +29,8 @@ def main():
     BLACK = (0, 0, 0)
     WHITE = (255, 255, 255)
 
+    colors = [RED, ORANGE, YELLOW, GREEN, CYAN]
+
     main_surface = pygame.display.set_mode((APPLICATION_WIDTH, APPLICATION_HEIGHT), 0, 32)
     main_surface.fill((255, 255, 255))
 
@@ -37,13 +39,19 @@ def main():
 
     x_pos = BRICK_SEP
     y_pos = BRICK_Y_OFFSET
-    my_brick = brick.Brick(BRICK_WIDTH, BRICK_HEIGHT, RED)
-    main_surface.blit(my_brick.image, (x_pos, y_pos))
+    for hue in colors:
+        for y in range(2):
+            for x in range(BRICKS_PER_ROW):
+                my_brick = brick.Brick(BRICK_WIDTH, BRICK_HEIGHT, hue)
+                main_surface.blit(my_brick.image, (x_pos, y_pos))
+                x_pos += BRICK_WIDTH + BRICK_SEP
+            y_pos += BRICK_HEIGHT + BRICK_SEP
+            x_pos = BRICK_SEP
 
-    for x in range(APPLICATION_WIDTH):
 
 
     while True:
+        pygame.display.update()
         for event in pygame.event.get():
             if event == QUIT:
                 pygame.quit()
