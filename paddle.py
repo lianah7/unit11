@@ -1,5 +1,6 @@
 import pygame
 
+
 class Paddle(pygame.sprite.Sprite):
 
     def __init__(self, main_surface, color, width, height):
@@ -23,5 +24,7 @@ class Paddle(pygame.sprite.Sprite):
 
     def move(self, position):
         self.rect.x = position[0]
+
+
 
 
