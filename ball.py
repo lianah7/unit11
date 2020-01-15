@@ -33,5 +33,12 @@ class Ball(pygame.sprite.Sprite):
         if self.rect.top < 0 or self.rect.bottom > self.windowHeight:
             self.y_speed = -self.y_speed
 
-    def collide(self, spriteGroup):
-        if pygame.sprite.spritecollide():
+    def collide(self, sprite_group):
+        if pygame.sprite.spritecollide(self, sprite_group, False):
+            self.y_speed = -self.y_speed
+
+    def collide_brick(self, sprite_group):
+        if pygame.sprite.spritecollide(self, sprite_group, True):
+            self.x_speed = -self.x_speed
+
+
