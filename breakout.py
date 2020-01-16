@@ -37,7 +37,9 @@ def main():
     paddle_group = pygame.sprite.Group()
 
     main_surface = pygame.display.set_mode((APPLICATION_WIDTH, APPLICATION_HEIGHT), 0, 32)
-    main_surface.fill(WHITE)
+    bg = pygame.image.load("backyard.jpg")
+    main_surface.blit(bg, (0, 0))
+    # main_surface.fill(WHITE)
 
     # Step 1: Use loops to draw the rows of bricks. The top row of bricks should be 70 pixels away from the top of
     # the screen (BRICK_Y_OFFSET)
@@ -68,8 +70,10 @@ def main():
     my_ball.rect.y = APPLICATION_HEIGHT/2
     main_surface.blit(my_ball.image, my_ball.rect)
 
+    tries = 0
+
     while True:
-        main_surface.fill(WHITE)
+        main_surface.blit(bg, (0, 0))
         for a_brick in bricks_group:
             main_surface.blit(a_brick.image, a_brick.rect)
         my_paddle.move(pygame.mouse.get_pos())
@@ -78,8 +82,14 @@ def main():
         my_ball.move()
         my_ball.collide(paddle_group)
         my_ball.collide_brick(bricks_group)
-        # if my_ball.rect.bottom >= APPLICATION_HEIGHT:
-        #     my_ball.rect
+        if my_ball.rect.bottom >= APPLICATION_HEIGHT:
+            my_ball.rect.x = APPLICATION_WIDTH/2
+            my_ball.rect.y = APPLICATION_HEIGHT/2
+            tries += 1
+        if tries == 3:
+            break
+        if NUM_TURNS == 0:
+            break
         pygame.display.update()
         for event in pygame.event.get():
             if event == QUIT:
