@@ -16,7 +16,8 @@ class Ball(pygame.sprite.Sprite):
         # Create a surface, get the rect coordinates, fill the surface with a white color (or whatever color the
         # background of your breakout game will be.
         # self.image = pygame.Surface((radius, radius))
-        self.image = pygame.image.load("gymnast.jpg")
+        self.original_image = pygame.image.load("gymnast.png")
+        self.image = self.original_image
         self.rect = self.image.get_rect()
         # self.image.fill((255, 255, 255))
 
@@ -24,11 +25,13 @@ class Ball(pygame.sprite.Sprite):
         # pygame.draw.circle(self.image, (0, 0, 0), (5, 5), 5, 0)
         self.x_speed = 3
         self.y_speed = 4
+        self.angle = 0
 
     def move(self):
         self.rect.x += self.x_speed
         self.rect.y += self.y_speed
-
+        self.image = pygame.transform.rotate(self.original_image, self.angle)
+        self.angle += 1 % 360
         if self.rect.left < 0 or self.rect.right > self.windowWidth:
             self.x_speed = -self.x_speed
         if self.rect.top < 0 or self.rect.bottom > self.windowHeight:
