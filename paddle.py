@@ -14,6 +14,7 @@ class Paddle(pygame.sprite.Sprite):
         self.main_surface = main_surface
 
         # Create a surface with the correct height and width
+        # Loads downloaded image as background
         # self.image = pygame.Surface((width, height))
         self.image = pygame.image.load("trampoline.png")
 
@@ -23,6 +24,7 @@ class Paddle(pygame.sprite.Sprite):
         # Fill the surface with the correct color
         # self.image.fill(color)
 
+    #  Sets position of paddle movement based on mouse movement
     def move(self, position):
         self.rect.x = position[0]
 

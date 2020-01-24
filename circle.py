@@ -1,5 +1,6 @@
 import pygame
 
+
 class Circle:
 
     def __init__(self, main_surface):
@@ -12,6 +13,7 @@ class Circle:
         self.x_speed = 3
         self.y_speed = 4
 
+    # Sets speed of ball
     def move(self):
         self.rect.x += self.x_speed
         self.rect.y += self.y_speed
